@@ -1080,7 +1080,7 @@ let baseHTML = `
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Proxy List</title>
+    <title>OBER VPN SERVER</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       /* For Webkit-based browsers (Chrome, Safari and Opera) */
@@ -1560,6 +1560,40 @@ let baseHTML = `
         }
       };
     </script>
+
+  <!-- Tambahkan script latency checker di bawah -->
+  <script>
+  async function checkLatency(ip, port, elementId) {
+    const start = performance.now();
+    try {
+      await fetch(`https://${ip}:${port}`, { mode: "no-cors" });
+      const end = performance.now();
+      document.getElementById(elementId).innerText =
+        "Ping: " + Math.round(end - start) + " ms";
+      document.getElementById(elementId).classList.remove("animate-pulse");
+      document.getElementById(elementId).classList.add("text-green-500");
+    } catch (e) {
+      document.getElementById(elementId).innerText = "Ping: timeout";
+      document.getElementById(elementId).classList.remove("animate-pulse");
+      document.getElementById(elementId).classList.add("text-red-500");
+    }
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("[id^='ping-']").forEach((el) => {
+      const [_, index] = el.id.split("-");
+      const ip = el.getAttribute("data-ip");
+      const port = el.getAttribute("data-port");
+      if (ip && port) {
+        setInterval(() => checkLatency(ip, port, el.id), 5000);
+        checkLatency(ip, port, el.id);
+      }
+    });
+  });
+  </script>
+
+
+    
     </body>
 
 </html>
