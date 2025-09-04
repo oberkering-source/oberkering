@@ -8,9 +8,9 @@ const serviceName = "ober"; // Ganti dengan nama workers kalian
 const apiKey = "ab32a8ef5ddc8ca3980e64a2ec04c9ea6017c"; // Ganti dengan Global API key kalian (https://dash.cloudflare.com/profile/api-tokens)
 const apiEmail = "oberkering@gmail.com"; // Ganti dengan email yang kalian gunakan
 const accountID = "cbaa4c6721e9e740ba488da2d74d977a"; // Ganti dengan Account ID kalian (https://dash.cloudflare.com -> Klik domain yang kalian gunakan)
-const zoneID = "ab32a8ef5ddc8ca3980e64a2ec04c9ea6017c"; // Ganti dengan Zone ID kalian (https://dash.cloudflare.com -> Klik domain yang kalian gunakan)
+const zoneID = ""; // Ganti dengan Zone ID kalian (https://dash.cloudflare.com -> Klik domain yang kalian gunakan)
 let isApiReady = false;
-let proxyIP = "";
+let proxyIP = "https://raw.githubusercontent.com/FoolVPN-ID/Nautica/refs/heads/main/kvProxyList.json";
 let cachedProxyList = [];
 
 // Constant
