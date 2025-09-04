@@ -5,7 +5,7 @@ import { connect } from "cloudflare:sockets";
 // Variables
 const rootDomain = "oberkering.workers.dev"; // Ganti dengan domain utama kalian
 const serviceName = "ober"; // Ganti dengan nama workers kalian
-const apiKey = "dOeZ-rwB-u_awvsnqN6HHJV97tKTRWkDoLFy8CMb"; // Ganti dengan Global API key kalian (https://dash.cloudflare.com/profile/api-tokens)
+const apiKey = "ab32a8ef5ddc8ca3980e64a2ec04c9ea6017c"; // Ganti dengan Global API key kalian (https://dash.cloudflare.com/profile/api-tokens)
 const apiEmail = "oberkering@gmail.com"; // Ganti dengan email yang kalian gunakan
 const accountID = "cbaa4c6721e9e740ba488da2d74d977a"; // Ganti dengan Account ID kalian (https://dash.cloudflare.com -> Klik domain yang kalian gunakan)
 const zoneID = ""; // Ganti dengan Zone ID kalian (https://dash.cloudflare.com -> Klik domain yang kalian gunakan)
@@ -1080,7 +1080,7 @@ let baseHTML = `
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OBER VPN SERVER</title>
+    <title>Proxy List</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       /* For Webkit-based browsers (Chrome, Safari and Opera) */
@@ -1560,40 +1560,6 @@ let baseHTML = `
         }
       };
     </script>
-
-  <!-- Tambahkan script latency checker di bawah -->
-  <script>
-  async function checkLatency(ip, port, elementId) {
-    const start = performance.now();
-    try {
-      await fetch(`https://${ip}:${port}`, { mode: "no-cors" });
-      const end = performance.now();
-      document.getElementById(elementId).innerText =
-        "Ping: " + Math.round(end - start) + " ms";
-      document.getElementById(elementId).classList.remove("animate-pulse");
-      document.getElementById(elementId).classList.add("text-green-500");
-    } catch (e) {
-      document.getElementById(elementId).innerText = "Ping: timeout";
-      document.getElementById(elementId).classList.remove("animate-pulse");
-      document.getElementById(elementId).classList.add("text-red-500");
-    }
-  }
-
-  window.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll("[id^='ping-']").forEach((el) => {
-      const [_, index] = el.id.split("-");
-      const ip = el.getAttribute("data-ip");
-      const port = el.getAttribute("data-port");
-      if (ip && port) {
-        setInterval(() => checkLatency(ip, port, el.id), 5000);
-        checkLatency(ip, port, el.id);
-      }
-    });
-  });
-  </script>
-
-
-    
     </body>
 
 </html>
@@ -1634,12 +1600,7 @@ class Document {
       proxyGroupElement += `<div class="lozad scale-95 mb-4 bg-white dark:bg-slate-800 transition-all duration-300 rounded-lg p-6 flex flex-col shadow-md hover:shadow-lg border border-slate-200 dark:border-slate-700 hover:scale-105">`;
       proxyGroupElement += `  <div id="countryFlag" class="absolute -translate-y-11 -translate-x-2 border-4 border-white dark:border-slate-800 rounded-full overflow-hidden"><img width="48" src="https://hatscripts.github.io/circle-flags/flags/${proxyData.country.toLowerCase()}.svg" /></div>`;
       proxyGroupElement += `  <div class="flex-grow">`;
-      proxyGroupElement += `    <div id="ping-${i}" 
-  data-ip="${proxyData.proxyIP}" 
-  data-port="${proxyData.proxyPort}" 
-  class="animate-pulse text-xs font-semibold text-slate-500 dark:text-slate-400 text-right">
-    Checking...
-  </div>`;      
+      proxyGroupElement += `    <div id="ping-${i}" class="animate-pulse text-xs font-semibold text-slate-500 dark:text-slate-400 text-right">Idle ${proxyData.proxyIP}:${proxyData.proxyPort}</div>`;
       proxyGroupElement += `  </div>`;
       proxyGroupElement += `  <div class="rounded-lg py-4 px-4 bg-slate-50 dark:bg-slate-700/50 flex-grow mt-4">`;
       proxyGroupElement += `    <h5 class="font-bold text-lg text-slate-800 dark:text-slate-100 mb-1 overflow-x-scroll scrollbar-hide text-nowrap">${proxyData.org}</h5>`;
